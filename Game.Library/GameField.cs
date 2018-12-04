@@ -16,6 +16,8 @@ namespace Game.Library
         public static bool IsFinished = false;
         public HashSet<int> GuessedNumbers = new HashSet<int>();
 
+        
+
         public GameField(int number)
         {
             _number = number;

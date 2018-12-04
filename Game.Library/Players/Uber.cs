@@ -11,9 +11,12 @@ namespace Game.Library.Players
         private int UberNumber = 0;        
         public override void Go(HashSet<int> GuessedNumbers)
         {
-            UberNumber += 1;           
-            GuessedNumbers.Add(UberNumber);
-            Console.WriteLine("Uber {0}",UberNumber);
+            lock (lockObj)
+            {
+                UberNumber += 1;
+                GuessedNumbers.Add(UberNumber);
+                Console.WriteLine("Uber {0}", UberNumber);
+            }
         }
     }
 }

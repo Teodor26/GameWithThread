@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 namespace Game.Library.Players
 {
     public class Ordinary : BasePlayer
-    {
+    {        
         public override void Go(HashSet<int> GuessedNumbers)
         {
             Random rand = new Random();
-            int result = rand.Next(1,1000);
-            GuessedNumbers.Add(result);
-            Console.WriteLine("Ordinary {0}",result);
+            lock (lockObj)
+            {                
+                int result = rand.Next(1, 1000);
+                GuessedNumbers.Add(result);
+                Console.WriteLine("Ordinary {0}", result);
+            }
         }
     }
 }

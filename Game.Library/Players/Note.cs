@@ -12,15 +12,18 @@ namespace Game.Library.Players
         private int NoteNumber;
         public override void Go(HashSet<int> GuessedNumbers)
         {
-            int NoteNumber;
-            Random rand = new Random();
-            do
+            lock (lockObj)
             {
-                NoteNumber = rand.Next(1, 1000);
-            } while (!NoteList.Contains(NoteNumber));
+                int NoteNumber;
+                Random rand = new Random();
+                do
+                {
+                    NoteNumber = rand.Next(1, 1000);
+                } while (!NoteList.Contains(NoteNumber));
 
-            GuessedNumbers.Add(NoteNumber);
-            Console.WriteLine("NotePlayer {0}", NoteNumber);
+                GuessedNumbers.Add(NoteNumber);
+                Console.WriteLine("NotePlayer {0}", NoteNumber);
+            }
         }
     }
 }
