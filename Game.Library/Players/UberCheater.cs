@@ -11,16 +11,14 @@ namespace Game.Library.Players
         private int UberCheaterNumber=0;
         public override void Go(HashSet<int> GuessedNumbers)
         {
-            lock (lockObj)
+            UberCheaterNumber += 1;
+            if (GuessedNumbers.Contains(UberCheaterNumber))
             {
-                do
-                {
-                    if (GuessedNumbers.Contains(UberCheaterNumber))
-                        UberCheaterNumber += 1;
-                } while (!GuessedNumbers.Contains(UberCheaterNumber));
-                GuessedNumbers.Add(UberCheaterNumber);
-                Console.WriteLine("UberCheater {0}", UberCheaterNumber);
+                UberCheaterNumber += 1;
             }
+            GuessedNumbers.Add(UberCheaterNumber);
+            Console.WriteLine("UberCheater {0}", UberCheaterNumber);
+            Console.WriteLine();
         }
     }
 }

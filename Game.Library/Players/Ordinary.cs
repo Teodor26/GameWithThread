@@ -10,13 +10,11 @@ namespace Game.Library.Players
     {        
         public override void Go(HashSet<int> GuessedNumbers)
         {
-            Random rand = new Random();
-            lock (lockObj)
-            {                
+                  Random rand = new Random();                           
                 int result = rand.Next(1, 1000);
                 GuessedNumbers.Add(result);
-                Console.WriteLine("Ordinary {0}", result);
-            }
+                Console.WriteLine("Ordinary {0}", result);            
+            
         }
     }
 }

@@ -13,10 +13,10 @@ namespace Game.Library
         public int _number { get; set; }
 
         public BasePlayer[] AllPlayers = new BasePlayer[5];
-        public static bool IsFinished = false;
+        public static bool IsFinished = true;
         public HashSet<int> GuessedNumbers = new HashSet<int>();
 
-        
+
 
         public GameField(int number)
         {
@@ -32,8 +32,25 @@ namespace Game.Library
             AllPlayers[3] = uber;
             AllPlayers[4] = ubercheater;
             Start();
+           // Test();
         }
 
+        //public void Test()
+        //{
+        //    while(IsFinished)
+        //        foreach (var player in AllPlayers)
+        //        {
+        //            player.Go(GuessedNumbers);
+        //            if (GuessedNumbers.Contains(_number))
+        //            {
+        //                Console.WriteLine("This player has won the game.");
+        //                IsFinished=false;
+        //                break;
+        //            }
+        //        }
+        //    }
+
+        //}
         public void Start()
         {
             List<Thread> threads = new List<Thread>();
@@ -46,8 +63,7 @@ namespace Game.Library
             {
                 thread.Start();
             }
-
         }
 
     }
-}
+
