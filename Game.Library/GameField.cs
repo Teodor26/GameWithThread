@@ -16,8 +16,6 @@ namespace Game.Library
         public static bool IsFinished = true;
         public HashSet<int> GuessedNumbers = new HashSet<int>();
 
-
-
         public GameField(int number)
         {
             _number = number;
@@ -54,11 +52,14 @@ namespace Game.Library
         public void Start()
         {
             List<Thread> threads = new List<Thread>();
+            
+                foreach (var player in AllPlayers)
+                {
+                    threads.TakeWhile(player => player.Go(GuessedNumbers) !=_number);
 
-            foreach (var player in AllPlayers)
-            {
-                threads.Add(new Thread(() => player.Go(GuessedNumbers)));
-            }
+                    threads.Add(new Thread(() => player.Go(GuessedNumbers)));
+                }
+            
             foreach (var thread in threads)
             {
                 thread.Start();
